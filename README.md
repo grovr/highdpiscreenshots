@@ -1,0 +1,1 @@
+convert box.png -resize x500 box_thumb.png
