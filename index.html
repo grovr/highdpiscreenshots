@@ -17,6 +17,8 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!-- video.js css -->
+        <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -39,13 +41,33 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">A Chrome Extension to create super high DPI screenshots of any part of any website!</h2>
+                        <h2 class="text-white mt-0">Easily create super high DPI screenshots of any part of any website using the High DPI Screenshots Chrome Extension</h2>
                         <hr class="divider divider-light" />
-                        <h4>As you can see in the example below, click for an even higher resolution image</h4>
-                        <a href="assets/img/superhigh.png" class="lightbox">
-                            <img src="assets/img/superhigh_thumb.png" class="figure-img img-fluid rounded" alt="A very high resolution and pixel dense screenshot of some of this page.">
-                        </a>
-                        <a class="btn btn-light btn-xl" href="https://chrome.google.com/webstore/detail/knjdiaogjhjbokifejpgmdbfhenbnhhl">Download the Chrome Extension to get started now!</a>
+                        <h4>See it in action in the video below</h4>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <video
+                        id="my-video"
+                        class="video-js vjs-16-9"
+                        controls
+                        preload="auto"
+                        data-setup="{}"
+                    >
+                        <source src="assets/vid/High DPI Screenshots Demo.mp4" type="video/mp4" />
+                        <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                        </p>
+                    </video>
+                    <!-- <a href="assets/img/superhigh.png" class="lightbox">
+                        <img src="assets/img/superhigh_thumb.png" class="figure-img img-fluid rounded" alt="A very high resolution and pixel dense screenshot of some of this page.">
+                    </a> -->
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center" style="padding-top: 20px;">
+                        <a class="btn btn-light btn-xl bg-success" href="https://chrome.google.com/webstore/detail/knjdiaogjhjbokifejpgmdbfhenbnhhl">Download the Chrome Extension to get started now!</a>
                     </div>
                 </div>
             </div>
@@ -165,5 +187,7 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <!-- video.js js -->
+        <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     </body>
 </html>
