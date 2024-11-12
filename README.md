@@ -3,3 +3,5 @@ convert chrome_screenshot_raw.png -resize 1280x800^ -gravity center -extent 1280
 convert chrome_screenshot_raw.png -resize 1280x800 -background white -gravity center -extent 1280x800 chrome_screenshot_sized.png
 
 Theme/template from https://startbootstrap.com/previews/creative
+
+Mde viddeo with https://clipchamp.com/en/video-editor
