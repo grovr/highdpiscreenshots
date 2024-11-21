@@ -1,64 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>High DPI Screenshots</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap Icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-        <!-- SimpleLightbox plugin CSS-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <!-- video.js css -->
-        <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">High DPI Screenshots</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#easy">Easy as 1 2 3</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#benefits">Why</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#download">Download</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#getlicense">Get a license</a></li>
-                    </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High DPI Screenshots</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .image-comparison {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+
+        .slider-container {
+            position: absolute;
+            inset: 0;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #2563eb;
+            cursor: ew-resize;
+            left: 50%;
+        }
+
+        .handle-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .labels {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .label {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image.clipped {
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+        }
+    </style>
+    <!-- video.js css -->
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-white shadow-lg z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-gray-800">High DPI Screenshots</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#demo" class="text-gray-600 hover:text-blue-600">Demo</a>
+                    <a href="#features" class="text-gray-600 hover:text-blue-600">Features</a>
+                    <a href="#how-it-works" class="text-gray-600 hover:text-blue-600">How It Works</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-blue-600">Pricing</a>
+                </div>
+                <a href="https://chrome.google.com/webstore/detail/knjdiaogjhjbokifejpgmdbfhenbnhhl" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors">
+                    Download Now
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 bg-gradient-to-r from-blue-600 to-blue-800">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold text-white mb-6">
+                Create Crystal Clear Screenshots
+            </h1>
+            <p class="text-xl text-white mb-6 max-w-2xl mx-auto bg-black/20 rounded-lg p-6 backdrop-blur-sm">
+                Generate super-detailed, high-DPI screenshots that go beyond standard screen capture capabilities
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="https://chrome.google.com/webstore/detail/knjdiaogjhjbokifejpgmdbfhenbnhhl" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                    Download Chrome Extension
+                </a>
+                <a href="#demo" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-colors">
+                    See Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16">See the Difference</h2>
+            <p class="text-xl text-gray-600 mb-6 max-w-2xl mx-auto bg-black/20 rounded-lg p-6 backdrop-blur-sm">
+                Drag the slider below to compare a normal OS screenshot with a High DPI Screenshots screenshot
+            </p>
+            <div class="image-comparison">
+                
+                <!-- Slider container -->
+                <div class="slider-container">
+
+                    <!-- Base image -->
+                    <div class="image">
+                        <img src="assets/img/bigComp.png" alt="High DPI Screenshot">
+                    </div>
+
+                    <!-- High res image -->
+                    <div class="image clipped">
+                        <img src="assets/img/smallComp.png" alt="Native OS Screenshot">
+                    </div>
+                    
+                    <!-- Slider handle -->
+                    <div class="slider slider-handle">
+                        <div class="handle-circle">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
+                                <path d="M8 7h8M8 12h8M8 17h8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Labels -->
+                <div class="labels">
+                    <span class="label">Native OS Screenshot</span>
+                    <span class="label">High DPI Screenshot</span>
                 </div>
             </div>
-        </nav>
-        <!-- About-->
-        <section class="page-section bg-primary" id="about">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h1 class="text-white mt-0">Enhance Your Screenshots!<h2>
-                        <h2 class="text-white mt-0">Easily create super high DPI screenshots of any part of any website using the High DPI Screenshots Chrome Extension. Generate super-detailed, high-DPI screenshots beyond standard screen capture capabilities</h2>
-                        <hr class="divider divider-light" />
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center text-center" style="padding-bottom: 60px;">
-                    <h4>Use the slider below to compare a default OS screenshot with a High DPI Screenshots screenshot</h4>
-                    <div class="image-spliter">
-                        <div class="mover"></div>
-                        <img class="img-left" src="assets/img/smallComp.png" />
-                        <img class="img-right" src="assets/img/bigComp.png" />
-                        <div class="sliderLabel sliderLeft">OS Screenshot</div>
-                        <div class="sliderLabel sliderRight">High DPI Screenshot</div>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center text-center">
-                    <h4>See High DPI Screenshots in action in the video below</h4>
-                    <video
+
+            <!-- Video Demo -->
+            <div class="mt-20">
+                <h2 class="text-3xl font-bold text-center mb-8">Watch How It Works</h2>
+                <p class="text-xl text-gray-600 mb-6 max-w-2xl mx-auto bg-black/20 rounded-lg p-6 backdrop-blur-sm">
+                    High DPI Screenshots automatically zooms, pans and stitches screen captures to create screenshots beyond the limits of your current resolution
+                </p>
+                <div class="mx-auto aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                    <div class="flex items-center justify-center h-full">
+                        <video
                         id="my-video"
                         class="video-js vjs-16-9"
                         controls
@@ -71,136 +187,207 @@
                         web browser that
                         <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                         </p>
-                    </video>
-                    <!-- <a href="assets/img/superhigh.png" class="lightbox">
-                        <img src="assets/img/superhigh_thumb.png" class="figure-img img-fluid rounded" alt="A very high resolution and pixel dense screenshot of some of this page.">
-                    </a> -->
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center" style="padding-top: 20px;">
-                        <a class="btn btn-light btn-xl bg-success" href="https://chrome.google.com/webstore/detail/knjdiaogjhjbokifejpgmdbfhenbnhhl">Download the Chrome Extension to get started now!</a>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center text-white" style="padding-top: 20px;">
-                        If you want to see the image created in the video, you can download it <a class="text-white" target="_blank" href="assets/img/download.png">here</a>
+                    </video>>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Services-->
-        <section class="page-section" id="easy">
-            <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">It's as easy as 1-2-3</h2>
-                <hr class="divider" />
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-lg-4 col-md-6 text-center">
-                        <div class="mb-2">
-                            <i class="bi-1-circle fs-1 text-primary"></i>
-                        </div>
-                        <figure class="figure">
-                            <figcaption class="figure-caption">Click the icon or press the keyboard shortcut.</figcaption>
-                            <a href="assets/img/usage.png" class="lightbox">
-                                <img src="assets/img/usage_thumb.png" class="figure-img img-fluid rounded" alt="The keyboard shortcut is Crtl + Shift + S.">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="col-lg-4 col-md-6 text-center">
-                        <div class="mb-2">
-                            <i class="bi-2-circle fs-1 text-primary"></i>
-                        </div>
-                        <figure class="figure">
-                            <figcaption class="figure-caption">Drag a box around what you want to capture.</figcaption>
-                            <a href="assets/img/action1.png" class="lightbox">
-                                <img src="assets/img/action1.png" class="figure-img img-fluid rounded" alt="A double bordered box around some of the text above.">
-                            </a>
-                          </figure>
-                    </div>
-                    <div class="col-lg-4 col-md-6 text-center">
-                        <div class="mb-2">
-                            <i class="bi-3-circle fs-1 text-primary"></i>
-                        </div>
-                        <figure class="figure">
-                            <figcaption class="figure-caption">Save the High DPI Screenshot.</figcaption>
-                            <a href="assets/img/save.png" class="lightbox">
-                                <img src="assets/img/save_thumb.png" class="figure-img img-fluid rounded" alt="A save icon.">
-                            </a>
-                          </figure>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Benefits-->
-        <section class="page-section bg-primary text-white" id="benefits">
-            <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Why use High DPI Screenshots?</h2>
-                <hr class="divider" />
-                <div class="row gx-4 gx-lg-5">
-                    <div class="text-center">
-                        <p class="fs-3">
-                            <i class="bi-zoom-in text-success bold-icon p-2"></i>Download at 5x, 10x viewed resolution or fixed width or height
-                        </p>
-                        <p class="fs-3 font-weight-bold">
-                            <i class="bi-clock text-success bold-icon p-2"></i>No need to manually zoom in and out
-                        </p>
-                        <p class="fs-3">
-                            <i class="bi-book text-success bold-icon p-2"></i>Great for tutorials, documentation
-                        </p>
-                        <p class="fs-3">
-                            <i class="bi-mouse2 text-success bold-icon p-2"></i>Just a click and a drag before your screenshot is made
-                        </p>
-                        <p class="fs-3">
-                            <i class="bi-keyboard text-success bold-icon p-2"></i>Or start with the keyboard shortcut: Ctrl + Shift + S
-                        </p>
-                    </div>
-                    <div class="col-lg-6 col-md-6 text-center">
-                        <!-- TODO Another list of benefits here or maybe just go back to one central one-->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Call to action-->
-        <section id="download" class="page-section">
-            <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Download the Chrome Extension to get started now!</h2>
-                <div>
-                    <a class="btn btn-dark btn-xl" href="https://chrome.google.com/webstore/detail/knjdiaogjhjbokifejpgmdbfhenbnhhl">Download</a>
-                </div>
-            </div>
-        </section>
-        <!-- Call to action-->
-        <section id="getlicense" class="page-section bg-dark text-white">
-            <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Get a license. Unlicensed version screenshots have a water mark</h2>
-                <div class="row">
-                <div class="col">
-                </div>
-                <div class="col">
-                    <a href="assets/img/watermark.png" class="lightbox">
-                        <img src="assets/img/watermark_thumb.png" class="figure-img img-fluid rounded" alt="A screenshot of this page with a watermark applied.">
-                    </a>
-                </div>
-                <div class="col">
-                </div>
-                </div>
-                <div>
-                    <a class="btn bg-primary text-white btn-xl" href="https://buy.highdpiscreenshots.com/">BLACK FRIDAY DISCOUNT - Get a license now just $39 instead of $88</a>
-                </div>
-            </div>
-        </section>
-        <!-- Footer-->
-        <footer class="bg-light py-5">
-            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2024 - Grovr</div></div>
-            <div class="container px-4 px-lg-5"><div class="small text-center text-muted"><a href="./privacypolicy.html">Privacy Policy</a> - <a href="./terms.html">Terms and Conditions</a></div></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- SimpleLightbox plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        </div>
+    </section>
 
-        <!-- video.js js -->
-        <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-    </body>
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16">Why Choose High DPI Screenshots?</h2>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Crystal Clear Quality</h3>
+                    <p class="text-gray-600">Go beyond the limits of standard OS screenshots and capture screenshots at up to 10x the viewed resolution</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Lightning Fast</h3>
+                    <p class="text-gray-600">Just one click and drag to capture perfect screenshots</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Flexible Selection</h3>
+                    <p class="text-gray-600">Capture exactly what you want with precision selection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16">How It Works</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <div class="text-3xl font-bold text-blue-600 mb-4">1</div>
+                    <h3 class="text-xl font-semibold mb-4">Launch</h3>
+                    <p class="text-gray-600">Click the extension icon or press Ctrl + Shift + S to activate the screenshot tool</p>
+                    <img src="assets/img/logo600.png" alt="High DPI Screenshots logo" class="mt-4 rounded-lg shadow-sm">
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <div class="text-3xl font-bold text-blue-600 mb-4">2</div>
+                    <h3 class="text-xl font-semibold mb-4">Select Quality</h3>
+                    <p class="text-gray-600">Choose your desired output resolution - up to 10x the viewed size</p>
+                    <img src="assets/img/resolutionSelection.png" alt="Resolution selector showing 10x option" class="mt-4 rounded-lg shadow-sm">
+                </div>
+    
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <div class="text-3xl font-bold text-blue-600 mb-4">3</div>
+                    <h3 class="text-xl font-semibold mb-4">Select Area</h3>
+                    <p class="text-gray-600">Click and drag to select the exact area you want to capture</p>
+                    <img src="assets/img/selecting.png" alt="Dotted line box with resolutions" class="mt-4 rounded-lg shadow-sm">
+                </div>
+    
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <div class="text-3xl font-bold text-blue-600 mb-4">4</div>
+                    <h3 class="text-xl font-semibold mb-4">Download</h3>
+                    <p class="text-gray-600">Your high-resolution screenshot will be saved automatically</p>
+                    <img src="assets/img/save-icon.svg" alt="Save icon" class="mt-4 rounded-lg shadow-sm">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16">Simple, Transparent Pricing</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-8 max-w-5xl mx-auto">
+                <!-- Free Tier -->
+                <div class="flex-1 bg-white rounded-lg shadow-lg overflow-hidden max-w-sm">
+                    <div class="bg-gray-100 text-gray-800 p-8 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Free Version</h3>
+                        <div class="text-5xl font-bold mb-2">$0</div>
+                        <p class="text-gray-600">Forever Free</p>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Unlimited screenshots
+                            </li>
+                            <li class="flex items-center text-gray-500">
+                                <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                                Includes watermark
+                            </li>
+                            <li class="flex items-center text-gray-500">
+                                <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                                Basic support
+                            </li>
+                        </ul>
+                        <a href="https://chrome.google.com/webstore/detail/knjdiaogjhjbokifejpgmdbfhenbnhhl" class="block text-center bg-gray-200 text-gray-700 mt-8 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition-colors">
+                            Download Free
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- Pro Tier -->
+                <div class="flex-1 bg-white rounded-lg shadow-lg overflow-hidden max-w-sm transform scale-105">
+                    <div class="bg-blue-600 text-white p-8 text-center relative">
+                        <h3 class="text-2xl font-bold mb-2">Professional License</h3>
+                        <div class="text-5xl font-bold mb-2">
+                            <span class="text-2xl line-through opacity-75">$88</span>
+                            $39
+                        </div>
+                        <p class="text-white/90">BLACK FRIDAY SPECIAL</p>
+                        <p class="text-white/90 text-sm mt-2">Lifetime access - no subscription</p>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Unlimited screenshots
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                No watermarks
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Premium support
+                            </li>
+                        </ul>
+                        <a href="https://6414807490201.gumroad.com/l/highdpiscreenshots" class="block text-center bg-blue-600 text-white mt-8 px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors">
+                            Get a License
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">High DPI Screenshots</h3>
+                    <p class="text-gray-400">© 2024 Grovr. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="./privacypolicy.html" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="./terms.html" class="text-gray-400 hover:text-white transition-colors">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Image comparison slider functionality
+        const comparison = document.querySelector('.image-comparison');
+        const slider = document.querySelector('.slider');
+        const clippedImage = document.querySelector('.clipped');
+
+        function slide(e) {
+            const rect = comparison.getBoundingClientRect();
+            const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+            const percent = (x / rect.width) * 100;
+            slider.style.left = `${percent}%`;
+            clippedImage.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
+        }
+
+        slider.addEventListener('mousedown', () => {
+            document.addEventListener('mousemove', slide);
+            document.addEventListener('mouseup', () => {
+                document.removeEventListener('mousemove', slide);
+            });
+        });
+    </script>
+
+    <!-- video.js js -->
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+</body>
 </html>

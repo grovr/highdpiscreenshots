@@ -1,0 +1,23 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main floppy disk shape -->
+  <path 
+    d="M3 3a2 2 0 0 1 2-2h10l6 6v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3z" 
+    fill="#4F46E5"
+  />
+  
+  <!-- Metal shutter -->
+  <rect x="5" y="1" width="10" height="6" fill="#818CF8"/>
+  
+  <!-- Label area -->
+  <rect x="5" y="10" width="14" height="12" fill="#F9FAFB"/>
+  
+  <!-- Write protect tab -->
+  <rect x="16" y="1" width="2" height="4" fill="#312E81"/>
+  
+  <!-- Label lines -->
+  <g stroke="#6B7280" stroke-width="1">
+    <line x1="7" y1="13" x2="17" y2="13"/>
+    <line x1="7" y1="16" x2="17" y2="16"/>
+    <line x1="7" y1="19" x2="17" y2="19"/>
+  </g>
+</svg>
